@@ -44,33 +44,4 @@ export class Rover {
     public tournerDroite() {
         return new Rover(this.position, this.orentation.rotationDroite());
     }
-
-    public executerCommandes(commandes: string) {
-        commandes
-            .trim()
-            .split('')
-            .forEach((commande) => {
-                this._executerCommande(commande);
-            });
-    }
-
-    private _executerCommande(commande: string): Rover {
-        switch (commande) {
-            case 'A':
-                return this.avancer();
-            case 'R':
-                return this.reculer();
-            case 'G':
-                return this.tournerGauche();
-            default:
-                throw new Error(`Commande invalide : ${commande}`);
-        }
-    }
-
-    /**
-     * Récupérer la position du robot
-     */
-    public getPosition(): Point {
-        return this.position;
-    }
 }
