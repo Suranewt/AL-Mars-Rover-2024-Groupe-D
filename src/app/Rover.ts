@@ -1,47 +1,50 @@
-import { Planete } from './Planete';
+import { PlaneteToroidale } from './PlaneteToroidale';
 import { Orientation } from './Orientation';
 import { Point } from './Point';
+import { PlaneteInterface } from './planet.interface';
 
 export class Rover {
     public position: Point;
-    public orentation: Orientation;
+    public orientation: Orientation;
+    private planete: PlaneteInterface; 
 
-    constructor(position: Point, orientation: Orientation) {
+    constructor(position: Point, orientation: Orientation, planete: PlaneteInterface) {
         this.position = position;
-        this.orentation = orientation;
+        this.orientation = orientation;
+        this.planete = planete; 
     }
 
     /**
      * Avancer de 1 case
      */
     public avancer() {
-        return new Rover(
-            this.orentation.vecteur(this.position),
-            this.orentation
-        );
+        let nouvellePosition = this.orientation.vecteur(this.position);
+        nouvellePosition = this.planete.ajusterPosition(nouvellePosition); 
+        return new Rover(nouvellePosition,this.orientation,this.planete); 
     }
 
-    /**
-     * Reculer de 1 cases
-     */
+
     public reculer() {
-        return new Rover(
-            this.orentation.inverser().vecteur(this.position),
-            this.orentation
-        );
+        let nouvellePosition = this.orientation.inverser().vecteur(this.position);
+        nouvellePosition = this.planete.ajusterPosition(nouvellePosition); 
+        return new Rover(nouvellePosition,this.orientation,this.planete);
     }
 
     /**
      * Tourner l'orientation du robot de 90° vers la gauche
      */
     public tournerGauche() {
-        return new Rover(this.position, this.orentation.rotationGauche());
+        this.orientation = this.orientation.rotationGauche(); 
     }
 
-    /**
-     * Tourner l'orientation du robot de 90° vers la droite
-     */
+
     public tournerDroite() {
-        return new Rover(this.position, this.orentation.rotationDroite());
+        this.orientation = this.orientation.rotationDroite(); 
+    }
+    /**
+     * Récupérer la position du robot
+     */
+    public getPosition(): Point {
+        return this.position;
     }
 }
