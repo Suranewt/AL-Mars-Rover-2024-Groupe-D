@@ -62,8 +62,6 @@ describe(`Un rover peut avancer`, () => {
 
             ROVER_FINAL = ROVER_FINAL.avancer();
 
-            console.log('ROVER_FINAL => ', ROVER_FINAL);
-
             expect(ROVER_FINAL.position.posX).toEqual(
                 ROVER_INIT.position.posX - 1
             );
