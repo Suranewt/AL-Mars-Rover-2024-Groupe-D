@@ -1,9 +1,7 @@
 export class Planete {
-    tailleX: number;
-    tailleY: number;
+    taille: number;
 
-    constructor(tailleX: number, tailleY: number) {
-        this.tailleX = tailleX;
-        this.tailleY = tailleY;
+    constructor(taille: number) {
+        this.taille = taille;
     }
 }

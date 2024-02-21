@@ -7,14 +7,6 @@ export class Point {
         this.posY = y;
     }
 
-    public getPosX(): number {
-        return this.posX;
-    }
-
-    public getPosY(): number {
-        return this.posY;
-    }
-
     IncrementerLatitude() {
         return new Point(this.posX + 1, this.posY);
     }
