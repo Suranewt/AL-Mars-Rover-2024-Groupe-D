@@ -1,1 +1,6 @@
-# AL-Mars-Rover-2024-Groupe-D
+# AL-Mars-Rover
+
+Membres :
+AWAISSI Achref
+SEGUIN Jean-Kelly
+DAORUEANG Saranyu
