@@ -1,7 +1,7 @@
-import { Point } from "./Point";
+import { Point } from './Point';
 
 export class PlaneteToroidale {
-    public taille: number; 
+    public taille: number;
 
     constructor(taille: number) {
         this.taille = taille;
@@ -12,8 +12,8 @@ export class PlaneteToroidale {
      Si le rover sort, il réaparaait de l'autre côté.
      */
     ajusterPosition(point: Point): Point {
-        const x = (point.getPosX() + this.taille) % this.taille;
-        const y = (point.getPosY() + this.taille) % this.taille;
+        const x = (point.posX + this.taille) % this.taille;
+        const y = (point.posY + this.taille) % this.taille;
         return new Point(x, y);
     }
 }
