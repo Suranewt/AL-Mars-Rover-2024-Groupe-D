@@ -8,5 +8,3 @@ let ROVER = new Rover(POSITION, Orientation.Nord);
 ROVER = ROVER.avancer();
 ROVER = ROVER.tournerDroite();
 ROVER = ROVER.reculer();
-
-console.log(ROVER.getPosition());
