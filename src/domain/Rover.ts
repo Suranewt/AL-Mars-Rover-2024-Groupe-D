@@ -30,13 +30,7 @@ export class Rover {
         const DEPLACEMENT_LIBRE: boolean =
             this.planete.estLibre(nouvellePosition);
 
-        if (DEPLACEMENT_LIBRE) {
-            nouvellePosition = this.planete.normaliser(nouvellePosition);
-            return new Rover(nouvellePosition, this.orientation, this.planete);
-        } else {
-            this.aucunObstacleRencontre = false;
-            return this;
-        }
+        return this._deplacerRover(this, DEPLACEMENT_LIBRE, nouvellePosition);
     }
 
     public reculer(): Rover {
@@ -47,12 +41,31 @@ export class Rover {
         const DEPLACEMENT_LIBRE: boolean =
             this.planete.estLibre(nouvellePosition);
 
-        if (DEPLACEMENT_LIBRE) {
-            nouvellePosition = this.planete.normaliser(nouvellePosition);
-            return new Rover(nouvellePosition, this.orientation, this.planete);
+        return this._deplacerRover(this, DEPLACEMENT_LIBRE, nouvellePosition);
+    }
+
+    /**
+     * Gère le comportement du Rover par rapport à son déplacement
+     * @param rover Le rover à déplacer
+     * @param estLibreDeDeplacement Le booléan permettant de savoir si le Rover n'a pas rencontré d'obstacle
+     * @param nouvellePosition La nouvelle position qu'aura le Rover
+     * @returns Le Rover déplacé (ou non si obstacle)
+     */
+    private _deplacerRover(
+        rover: Rover,
+        estLibreDeDeplacement: boolean,
+        nouvellePosition: Point
+    ): Rover {
+        if (estLibreDeDeplacement) {
+            nouvellePosition = rover.planete.normaliser(nouvellePosition);
+            return new Rover(
+                nouvellePosition,
+                rover.orientation,
+                rover.planete
+            );
         } else {
-            this.aucunObstacleRencontre = false;
-            return this;
+            rover.aucunObstacleRencontre = false;
+            return rover;
         }
     }
 
