@@ -1,6 +1,6 @@
-import { Orientation } from '../app/Orientation';
-import { Point } from '../app/Point';
-import { Rover } from '../app/Rover';
+import { Orientation } from '../domain/Orientation';
+import { Point } from '../domain/Point';
+import { Rover } from '../domain/Rover';
 import { RoverInterpretor } from '../app/RoverInterpreter';
 import { RoverBuilder } from './utilities/RoverBuilder';
 
@@ -12,7 +12,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
             roverTeste
         );
 
-        roverTeste = roverExecutor.execute('A');
+        roverTeste = roverExecutor.executer('A');
         roverTemoin = roverTemoin.avancer();
 
         expect(roverTeste.position).toEqual(roverTemoin.position);
@@ -25,7 +25,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
             roverTeste
         );
 
-        roverTeste = roverExecutor.execute('R');
+        roverTeste = roverExecutor.executer('R');
         roverTemoin = roverTemoin.reculer();
 
         expect(roverTeste.position).toEqual(roverTemoin.position);
@@ -38,7 +38,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
             roverTeste
         );
 
-        roverTeste = roverExecutor.execute('D');
+        roverTeste = roverExecutor.executer('D');
         roverTemoin = roverTemoin.tournerDroite();
 
         expect(roverTeste.orientation).toEqual(roverTemoin.orientation);
@@ -51,7 +51,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
             roverTeste
         );
 
-        roverTeste = roverExecutor.execute('G');
+        roverTeste = roverExecutor.executer('G');
         roverTemoin = roverTemoin.tournerGauche();
 
         expect(roverTeste.orientation).toEqual(roverTemoin.orientation);
@@ -75,7 +75,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
                     roverTeste
                 );
 
-                roverTeste = roverExecutor.execute('AAGRDD');
+                roverTeste = roverExecutor.executer('AAGRDD');
 
                 expect(roverTeste.position).toEqual(roverTemoin.position);
                 expect(roverTeste.orientation).toEqual(roverTemoin.orientation);

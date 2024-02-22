@@ -1,7 +1,7 @@
-import { Orientation } from '../../app/Orientation';
-import { PlaneteInterface } from '../../app/Planete.interface';
-import { Point } from '../../app/Point';
-import { Rover } from '../../app/Rover';
+import { Orientation } from '../../domain/Orientation';
+import { PlaneteInterface } from '../../domain/Planete.interface';
+import { Point } from '../../domain/Point';
+import { Rover } from '../../domain/Rover';
 import { PlaneteInfinie } from './PlaneteInfinie';
 
 export class RoverBuilder {

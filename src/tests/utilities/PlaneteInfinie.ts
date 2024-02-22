@@ -1,5 +1,5 @@
-import { PlaneteInterface } from '../../app/Planete.interface';
-import { Point } from '../../app/Point';
+import { PlaneteInterface } from '../../domain/Planete.interface';
+import { Point } from '../../domain/Point';
 
 export class PlaneteInfinie implements PlaneteInterface {
     normaliser(position: Point): Point {

@@ -1,6 +1,6 @@
-import { Orientation } from '../app/Orientation';
-import { Rover } from './../app/Rover';
-import { Point } from '../app/Point';
+import { Orientation } from '../domain/Orientation';
+import { Rover } from '../domain/Rover';
+import { Point } from '../domain/Point';
 import { PlaneteInfinie } from './utilities/PlaneteInfinie';
 import { RoverBuilder } from './utilities/RoverBuilder';
 
@@ -15,9 +15,7 @@ describe(`Un rover peut avancer`, () => {
 
             roverFinal = roverFinal.avancer();
 
-            expect(roverFinal.position.posY).toEqual(
-                ROVER_INIT.position.posY + 1
-            );
+            expect(roverFinal.position.y).toEqual(ROVER_INIT.position.y + 1);
         }
     );
     test(
@@ -34,9 +32,7 @@ describe(`Un rover peut avancer`, () => {
 
             roverFinal = roverFinal.avancer();
 
-            expect(roverFinal.position.posY).toEqual(
-                ROVER_INIT.position.posY - 1
-            );
+            expect(roverFinal.position.y).toEqual(ROVER_INIT.position.y - 1);
         }
     );
     test(
@@ -53,9 +49,7 @@ describe(`Un rover peut avancer`, () => {
 
             roverFinal = roverFinal.avancer();
 
-            expect(roverFinal.position.posX).toEqual(
-                ROVER_INIT.position.posX + 1
-            );
+            expect(roverFinal.position.x).toEqual(ROVER_INIT.position.x + 1);
         }
     );
     test(
@@ -72,9 +66,7 @@ describe(`Un rover peut avancer`, () => {
 
             roverFinal = roverFinal.avancer();
 
-            expect(roverFinal.position.posX).toEqual(
-                ROVER_INIT.position.posX - 1
-            );
+            expect(roverFinal.position.x).toEqual(ROVER_INIT.position.x - 1);
         }
     );
 });
@@ -94,9 +86,7 @@ describe(`Un rover peut reculer`, () => {
 
             roverFinal = roverFinal.reculer();
 
-            expect(roverFinal.position.posY).toEqual(
-                ROVER_INIT.position.posY - 1
-            );
+            expect(roverFinal.position.y).toEqual(ROVER_INIT.position.y - 1);
         }
     );
 });

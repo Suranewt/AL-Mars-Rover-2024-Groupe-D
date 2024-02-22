@@ -1,5 +1,6 @@
-import { Rover } from './Rover';
+import { Rover } from '../domain/Rover';
 
+// Objet valeur
 export class RoverInterpretor {
     private _rover: Rover;
 
@@ -7,13 +8,14 @@ export class RoverInterpretor {
         this._rover = rover;
     }
 
-    public execute(commandes: string): Rover {
-        commandes
-            .trim()
-            .split('')
-            .forEach((commande) => {
-                this._rover = this._executerCommande(commande);
-            });
+    public executer(commandes: string): Rover {
+        const commandesTab = commandes.trim().split('');
+        let i = 0;
+
+        while (i < commandesTab.length && this._rover.aucunObstacleRencontre) {
+            this._rover = this._executerCommande(commandesTab[i]);
+            i++;
+        }
 
         return this._rover;
     }
