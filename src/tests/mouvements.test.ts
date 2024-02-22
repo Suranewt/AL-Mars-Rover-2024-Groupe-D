@@ -1,6 +1,8 @@
 import { Orientation } from '../app/Orientation';
 import { Rover } from './../app/Rover';
 import { Point } from '../app/Point';
+import { PlaneteInfinie } from './utilities/PlaneteInfinie';
+import { RoverBuilder } from './utilities/RoverBuilder';
 
 describe(`Un rover peut avancer`, () => {
     test(
@@ -8,13 +10,12 @@ describe(`Un rover peut avancer`, () => {
             `QUAND il avance d'une case ` +
             `ALORS sa position y augmente d'autant`,
         () => {
-            const POSITION = new Point(0, 0);
-            const ROVER_INIT = new Rover(POSITION, Orientation.Nord);
-            let ROVER_FINAL = new Rover(POSITION, Orientation.Nord);
+            const ROVER_INIT = RoverBuilder.default();
+            let roverFinal = RoverBuilder.default();
 
-            ROVER_FINAL = ROVER_FINAL.avancer();
+            roverFinal = roverFinal.avancer();
 
-            expect(ROVER_FINAL.position.posY).toEqual(
+            expect(roverFinal.position.posY).toEqual(
                 ROVER_INIT.position.posY + 1
             );
         }
@@ -24,13 +25,16 @@ describe(`Un rover peut avancer`, () => {
             `QUAND il avance de 1 case ` +
             `ALORS sa position y diminue d'autant`,
         () => {
-            const POSITION = new Point(0, 0);
-            const ROVER_INIT = new Rover(POSITION, Orientation.Sud);
-            let ROVER_FINAL = new Rover(POSITION, Orientation.Sud);
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Sud)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Sud)
+                .build();
 
-            ROVER_FINAL = ROVER_FINAL.avancer();
+            roverFinal = roverFinal.avancer();
 
-            expect(ROVER_FINAL.position.posY).toEqual(
+            expect(roverFinal.position.posY).toEqual(
                 ROVER_INIT.position.posY - 1
             );
         }
@@ -40,13 +44,16 @@ describe(`Un rover peut avancer`, () => {
             `QUAND il avance de 1 case ` +
             `ALORS sa position x augmente d'autant`,
         () => {
-            const POSITION = new Point(0, 0);
-            const ROVER_INIT = new Rover(POSITION, Orientation.Est);
-            let ROVER_FINAL = new Rover(POSITION, Orientation.Est);
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Est)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Est)
+                .build();
 
-            ROVER_FINAL = ROVER_FINAL.avancer();
+            roverFinal = roverFinal.avancer();
 
-            expect(ROVER_FINAL.position.posX).toEqual(
+            expect(roverFinal.position.posX).toEqual(
                 ROVER_INIT.position.posX + 1
             );
         }
@@ -56,13 +63,16 @@ describe(`Un rover peut avancer`, () => {
             `QUAND il avance de 1 case ` +
             `ALORS sa position x diminue d'autant`,
         () => {
-            const POSITION = new Point(0, 0);
-            const ROVER_INIT = new Rover(POSITION, Orientation.Ouest);
-            let ROVER_FINAL = new Rover(POSITION, Orientation.Ouest);
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Ouest)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Ouest)
+                .build();
 
-            ROVER_FINAL = ROVER_FINAL.avancer();
+            roverFinal = roverFinal.avancer();
 
-            expect(ROVER_FINAL.position.posX).toEqual(
+            expect(roverFinal.position.posX).toEqual(
                 ROVER_INIT.position.posX - 1
             );
         }
@@ -76,12 +86,16 @@ describe(`Un rover peut reculer`, () => {
             `ALORS position y diminue d'autant`,
         () => {
             const POSITION = new Point(0, 0);
-            const ROVER_INIT = new Rover(POSITION, Orientation.Nord);
-            let ROVER_FINAL = new Rover(POSITION, Orientation.Nord);
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Nord)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Nord)
+                .build();
 
-            ROVER_FINAL = ROVER_FINAL.reculer();
+            roverFinal = roverFinal.reculer();
 
-            expect(ROVER_FINAL.position.posY).toEqual(
+            expect(roverFinal.position.posY).toEqual(
                 ROVER_INIT.position.posY - 1
             );
         }

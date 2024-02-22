@@ -1,47 +1,59 @@
-import { Planete } from './Planete';
+import { PlaneteToroidale } from './PlaneteToroidale';
 import { Orientation } from './Orientation';
 import { Point } from './Point';
+import { PlaneteInterface } from './Planete.interface';
 
 export class Rover {
-    public position: Point;
-    public orentation: Orientation;
+    readonly position: Point;
+    readonly orientation: Orientation;
+    private readonly planete: PlaneteInterface;
 
-    constructor(position: Point, orientation: Orientation) {
+    constructor(
+        position: Point,
+        orientation: Orientation,
+        planete: PlaneteInterface
+    ) {
         this.position = position;
-        this.orentation = orientation;
+        this.orientation = orientation;
+        this.planete = planete;
     }
 
     /**
      * Avancer de 1 case
      */
-    public avancer() {
-        return new Rover(
-            this.orentation.vecteur(this.position),
-            this.orentation
-        );
+    public avancer(): Rover {
+        let nouvellePosition = this.orientation.vecteur(this.position);
+        nouvellePosition = this.planete.normaliser(nouvellePosition);
+        return new Rover(nouvellePosition, this.orientation, this.planete);
     }
 
-    /**
-     * Reculer de 1 cases
-     */
-    public reculer() {
-        return new Rover(
-            this.orentation.inverser().vecteur(this.position),
-            this.orentation
-        );
+    public reculer(): Rover {
+        let nouvellePosition = this.orientation
+            .inverser()
+            .vecteur(this.position);
+        nouvellePosition = this.planete.normaliser(nouvellePosition);
+        return new Rover(nouvellePosition, this.orientation, this.planete);
     }
 
     /**
      * Tourner l'orientation du robot de 90° vers la gauche
      */
-    public tournerGauche() {
-        return new Rover(this.position, this.orentation.rotationGauche());
+    public tournerGauche(): Rover {
+        return new Rover(
+            this.position,
+            this.orientation.rotationGauche(),
+            this.planete
+        );
     }
 
     /**
      * Tourner l'orientation du robot de 90° vers la droite
      */
-    public tournerDroite() {
-        return new Rover(this.position, this.orentation.rotationDroite());
+    public tournerDroite(): Rover {
+        return new Rover(
+            this.position,
+            this.orientation.rotationDroite(),
+            this.planete
+        );
     }
 }

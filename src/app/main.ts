@@ -1,9 +1,9 @@
+import { RoverBuilder } from '../tests/utilities/RoverBuilder';
 import { Orientation } from './Orientation';
 import { Point } from './Point';
 import { Rover } from './Rover';
 
-const POSITION = new Point(0, 0);
-let ROVER = new Rover(POSITION, Orientation.Nord);
+let ROVER = RoverBuilder.default();
 
 ROVER = ROVER.avancer();
 ROVER = ROVER.tournerDroite();
