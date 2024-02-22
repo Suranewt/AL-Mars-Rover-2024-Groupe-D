@@ -35,4 +35,30 @@ describe('Rover dépassant les limites de la planète', () => {
         expect(rover.position.posX).toBe(0);
         expect(rover.position.posY).toBe(0);
     });
+
+    test('Rover dépasse le bord sud', () => {
+        let rover = new RoverBuilder()
+            .withStartingPosition(new Point(0, 0))
+            .withOrientation(Orientation.Sud)
+            .withPlanete(planeteToroidale)
+            .build();
+
+        rover = rover.avancer();
+
+        expect(rover.position.posX).toBe(0);
+        expect(rover.position.posY).toBe(99);
+    });
+
+    test('Rover dépasse le bord ouest', () => {
+        let rover = new RoverBuilder()
+            .withStartingPosition(new Point(0, 0))
+            .withOrientation(Orientation.Ouest)
+            .withPlanete(planeteToroidale)
+            .build();
+
+        rover = rover.avancer();
+
+        expect(rover.position.posX).toBe(99);
+        expect(rover.position.posY).toBe(0);
+    });
 });
