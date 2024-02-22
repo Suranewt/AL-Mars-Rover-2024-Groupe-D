@@ -89,4 +89,85 @@ describe(`Un rover peut reculer`, () => {
             expect(roverFinal.position.y).toEqual(ROVER_INIT.position.y - 1);
         }
     );
+
+    test(
+        `ETANT DONNE un rover dirigé vers le SUD, ` +
+            `QUAND il recule de 1 case ` +
+            `ALORS position y augmente d'autant`,
+        () => {
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Sud)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Sud)
+                .build();
+
+            roverFinal = roverFinal.reculer();
+
+            expect(roverFinal.position.y).toEqual(ROVER_INIT.position.y + 1);
+        }
+    );
+
+    test(
+        `ETANT DONNE un rover dirigé vers l'EST, ` +
+            `QUAND il recule de 1 case ` +
+            `ALORS position x diminue d'autant`,
+        () => {
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Est)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Est)
+                .build();
+
+            roverFinal = roverFinal.reculer();
+
+            expect(roverFinal.position.x).toEqual(ROVER_INIT.position.x - 1);
+        }
+    );
+
+    test(
+        `ETANT DONNE un rover dirigé vers l'OUEST, ` +
+            `QUAND il recule de 1 case ` +
+            `ALORS position x augmente d'autant`,
+        () => {
+            const ROVER_INIT = new RoverBuilder()
+                .withOrientation(Orientation.Ouest)
+                .build();
+            let roverFinal = new RoverBuilder()
+                .withOrientation(Orientation.Ouest)
+                .build();
+
+            roverFinal = roverFinal.reculer();
+
+            expect(roverFinal.position.x).toEqual(ROVER_INIT.position.x + 1);
+        }
+    );
+
+    describe(`Un Rover peut effectuer des rotations`, () => {
+        test(
+            `ETANT DONNE un Rover orienté vers le NORD, ` +
+                `QUAND il tourne à droite, ` +
+                `ALORS il effectue une rotation horaire et se trouve orienté vers l'EST`,
+            () => {
+                let roverInit = RoverBuilder.default();
+
+                roverInit = roverInit.tournerDroite();
+
+                expect(roverInit.orientation).toBe(Orientation.Est);
+            }
+        );
+        test(
+            `ETANT DONNE un Rover orienté vers le NORD, ` +
+                `QUAND il tourne à gauche, ` +
+                `ALORS il effectue une rotation anti-horaire et se trouve orienté vers l'OUEST`,
+            () => {
+                let roverInit = RoverBuilder.default();
+
+                roverInit = roverInit.tournerGauche();
+
+                expect(roverInit.orientation).toBe(Orientation.Ouest);
+            }
+        );
+    });
 });

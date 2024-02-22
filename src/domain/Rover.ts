@@ -54,9 +54,6 @@ export class Rover {
             this.aucunObstacleRencontre = false;
             return this;
         }
-
-        // nouvellePosition = this.planete.normaliser(nouvellePosition);
-        // return new Rover(nouvellePosition, this.orientation, this.planete);
     }
 
     /**
