@@ -85,7 +85,6 @@ describe(`Un rover peut reculer`, () => {
             `QUAND il recule de 1 case ` +
             `ALORS position y diminue d'autant`,
         () => {
-            const POSITION = new Point(0, 0);
             const ROVER_INIT = new RoverBuilder()
                 .withOrientation(Orientation.Nord)
                 .build();
