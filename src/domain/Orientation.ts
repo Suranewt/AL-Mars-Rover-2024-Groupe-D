@@ -18,12 +18,12 @@ export class Orientation {
     appliquerVecteur(position: Point): Point {
         if (this.estLongitudinal) {
             return this.estInverse
-                ? position.DecrementerLongitude()
-                : position.IncrementerLongitude();
+                ? position.decrementerLongitude()
+                : position.incrementerLongitude();
         } else {
             return this.estInverse
-                ? position.DecrementerLatitude()
-                : position.IncrementerLatitude();
+                ? position.decrementerLatitude()
+                : position.incrementerLatitude();
         }
     }
 
