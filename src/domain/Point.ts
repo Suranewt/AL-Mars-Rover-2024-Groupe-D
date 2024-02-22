@@ -1,4 +1,3 @@
-// Objet valeur
 export class Point {
     readonly x: number;
     readonly y: number;
@@ -22,5 +21,13 @@ export class Point {
 
     DecrementerLongitude() {
         return new Point(this.x, this.y - 1);
+    }
+    /**
+     * modulo
+     */
+       modulo(taille: number): Point {
+        const x = (this.x + taille) % taille;
+        const y = (this.y + taille) % taille;
+        return new Point(x, y);
     }
 }
