@@ -1,52 +1,60 @@
 import { Orientation } from '../app/Orientation';
 import { Point } from '../app/Point';
 import { Rover } from '../app/Rover';
-import { RoverExecutor } from '../app/RoverExecutor';
+import { RoverInterpretor } from '../app/RoverInterpreter';
 import { RoverBuilder } from './utilities/RoverBuilder';
 
 describe(`Un Rover exécute des commandes simples`, () => {
     test(`La commande 'A' fait avancer le Rover`, () => {
-        let ROVER_TEMOIN: Rover = RoverBuilder.default();
-        let ROVER_TESTE: Rover = RoverBuilder.default();
-        const roverExecutor: RoverExecutor = new RoverExecutor(ROVER_TESTE);
+        let roverTemoin: Rover = RoverBuilder.default();
+        let roverTeste: Rover = RoverBuilder.default();
+        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+            roverTeste
+        );
 
-        ROVER_TESTE = roverExecutor.execute('A');
-        ROVER_TEMOIN = ROVER_TEMOIN.avancer();
+        roverTeste = roverExecutor.execute('A');
+        roverTemoin = roverTemoin.avancer();
 
-        expect(ROVER_TESTE.position).toEqual(ROVER_TEMOIN.position);
+        expect(roverTeste.position).toEqual(roverTemoin.position);
     });
 
     test(`La commande 'R' fait reculer le Rover`, () => {
-        let ROVER_TEMOIN: Rover = RoverBuilder.default();
-        let ROVER_TESTE: Rover = RoverBuilder.default();
-        const roverExecutor: RoverExecutor = new RoverExecutor(ROVER_TESTE);
+        let roverTemoin: Rover = RoverBuilder.default();
+        let roverTeste: Rover = RoverBuilder.default();
+        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+            roverTeste
+        );
 
-        ROVER_TESTE = roverExecutor.execute('R');
-        ROVER_TEMOIN = ROVER_TEMOIN.reculer();
+        roverTeste = roverExecutor.execute('R');
+        roverTemoin = roverTemoin.reculer();
 
-        expect(ROVER_TESTE.position).toEqual(ROVER_TEMOIN.position);
+        expect(roverTeste.position).toEqual(roverTemoin.position);
     });
 
     test(`La commande 'D' fait tourner l'orientation du Rover de 90° vers la droite`, () => {
-        let ROVER_TEMOIN: Rover = RoverBuilder.default();
-        let ROVER_TESTE: Rover = RoverBuilder.default();
-        const roverExecutor: RoverExecutor = new RoverExecutor(ROVER_TESTE);
+        let roverTemoin: Rover = RoverBuilder.default();
+        let roverTeste: Rover = RoverBuilder.default();
+        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+            roverTeste
+        );
 
-        ROVER_TESTE = roverExecutor.execute('D');
-        ROVER_TEMOIN = ROVER_TEMOIN.tournerDroite();
+        roverTeste = roverExecutor.execute('D');
+        roverTemoin = roverTemoin.tournerDroite();
 
-        expect(ROVER_TESTE.orentation).toEqual(ROVER_TEMOIN.orentation);
+        expect(roverTeste.orientation).toEqual(roverTemoin.orientation);
     });
 
     test(`La commande 'G' fait tourner l'orientation du Rover de 90° vers la gauche`, () => {
-        let ROVER_TEMOIN: Rover = RoverBuilder.default();
-        let ROVER_TESTE: Rover = RoverBuilder.default();
-        const roverExecutor: RoverExecutor = new RoverExecutor(ROVER_TESTE);
+        let roverTemoin: Rover = RoverBuilder.default();
+        let roverTeste: Rover = RoverBuilder.default();
+        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+            roverTeste
+        );
 
-        ROVER_TESTE = roverExecutor.execute('G');
-        ROVER_TEMOIN = ROVER_TEMOIN.tournerGauche();
+        roverTeste = roverExecutor.execute('G');
+        roverTemoin = roverTemoin.tournerGauche();
 
-        expect(ROVER_TESTE.orentation).toEqual(ROVER_TEMOIN.orentation);
+        expect(roverTeste.orientation).toEqual(roverTemoin.orientation);
     });
 
     describe(`Un Rover exécute des commandes multiples`, () => {
@@ -56,21 +64,21 @@ describe(`Un Rover exécute des commandes simples`, () => {
                 `ALORS il doit se retrouver dans le même état qu'un Rover initialisé à (2, -1) orienté Sud`,
             () => {
                 const POSITION_TEMOIN = new Point(2, -1);
-                let ROVER_TEMOIN: Rover = new RoverBuilder()
+                let roverTemoin: Rover = new RoverBuilder()
                     .withStartingPosition(POSITION_TEMOIN)
                     .withOrientation(Orientation.Sud)
                     .build();
-                let ROVER_TESTE: Rover = new RoverBuilder()
+                let roverTeste: Rover = new RoverBuilder()
                     .withOrientation(Orientation.Est)
                     .build();
-                const roverExecutor: RoverExecutor = new RoverExecutor(
-                    ROVER_TESTE
+                const roverExecutor: RoverInterpretor = new RoverInterpretor(
+                    roverTeste
                 );
 
-                ROVER_TESTE = roverExecutor.execute('AAGRDD');
+                roverTeste = roverExecutor.execute('AAGRDD');
 
-                expect(ROVER_TESTE.position).toEqual(ROVER_TEMOIN.position);
-                expect(ROVER_TESTE.orentation).toEqual(ROVER_TEMOIN.orentation);
+                expect(roverTeste.position).toEqual(roverTemoin.position);
+                expect(roverTeste.orientation).toEqual(roverTemoin.orientation);
             }
         );
     });

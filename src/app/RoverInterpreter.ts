@@ -1,6 +1,6 @@
 import { Rover } from './Rover';
 
-export class RoverExecutor {
+export class RoverInterpretor {
     private _rover: Rover;
 
     constructor(rover: Rover) {
