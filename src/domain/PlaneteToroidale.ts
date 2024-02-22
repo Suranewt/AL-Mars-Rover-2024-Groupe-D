@@ -1,6 +1,7 @@
 import { PlaneteInterface } from './Planete.interface';
 import { Point } from './Point';
 
+// Objet valeur
 export class PlaneteToroidale implements PlaneteInterface {
     public taille: number;
 
@@ -13,8 +14,8 @@ export class PlaneteToroidale implements PlaneteInterface {
      * Si le rover sort, il réapparaît de l'autre côté.
      */
     normaliser(point: Point): Point {
-        const x = (point.posX + this.taille) % this.taille;
-        const y = (point.posY + this.taille) % this.taille;
+        const x = (point.x + this.taille) % this.taille;
+        const y = (point.y + this.taille) % this.taille;
         return new Point(x, y);
     }
 

@@ -1,5 +1,6 @@
 import { Point } from './Point';
 
+// Objet valeur
 export class Orientation {
     public static readonly Nord: Orientation = new Orientation(false, true);
     public static readonly Est: Orientation = new Orientation(false, false);
@@ -14,7 +15,7 @@ export class Orientation {
         this.estLongitudinal = estLongitudinal;
     }
 
-    vecteur(position: Point): Point {
+    appliquerVecteur(position: Point): Point {
         if (this.estLongitudinal) {
             return this.estInverse
                 ? position.DecrementerLongitude()
@@ -41,7 +42,7 @@ export class Orientation {
         }
     }
 
-    rotationGauche() {
+    rotationAntiHoraire() {
         switch (this) {
             case Orientation.Nord:
                 return Orientation.Ouest;
@@ -56,7 +57,7 @@ export class Orientation {
         }
     }
 
-    rotationDroite() {
+    rotationHoraire() {
         switch (this) {
             case Orientation.Nord:
                 return Orientation.Est;
