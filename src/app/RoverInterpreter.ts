@@ -1,3 +1,4 @@
+import { EncapsulationStringArray } from '../domain/EncapsulationStringArray';
 import { Rover } from '../domain/Rover';
 
 // Objet valeur
@@ -9,13 +10,16 @@ export class RoverInterpretor {
     }
 
     public executer(commandes: string): Rover {
-        const commandesTab: string[] = commandes.trim().split('');
+        const commandesTab: EncapsulationStringArray =
+            new EncapsulationStringArray(commandes.trim().split(''));
         let aRencontreUnObstacle: boolean = false;
         let i = 0;
 
-        while (i < commandesTab.length && !aRencontreUnObstacle) {
+        while (i < commandesTab.length() && !aRencontreUnObstacle) {
             const ROVER_INITIAL = this._rover;
-            this._rover = this._executerCommande(commandesTab[i]);
+            this._rover = this._executerCommande(
+                commandesTab.getCharAtIndex(i)
+            );
 
             if (
                 ROVER_INITIAL.position === this._rover.position &&
