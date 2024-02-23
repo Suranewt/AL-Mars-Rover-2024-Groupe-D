@@ -30,8 +30,8 @@ export class RoverInterpretor {
                 return this._rover.tournerGauche();
             case 'D':
                 return this._rover.tournerDroite();
-            default:
-                throw new Error(`Commande invalide : ${commande}`);
         }
+
+        throw new Error(`Commande invalide : ${commande}`);
     }
 }

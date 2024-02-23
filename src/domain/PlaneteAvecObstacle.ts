@@ -2,8 +2,8 @@ import { PlaneteInterface } from './Planete.interface';
 import { Point } from './Point';
 
 export class PlaneteAvecObstacle implements PlaneteInterface {
-    public planete: PlaneteInterface;
-    public obstacle: Point;
+    private readonly planete: PlaneteInterface;
+    private readonly obstacle: Point;
 
     constructor(planete: PlaneteInterface, obstacle: Point) {
         this.planete = planete;

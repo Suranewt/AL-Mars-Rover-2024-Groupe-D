@@ -16,49 +16,49 @@ export class Orientation {
     }
 
     appliquerVecteur(position: Point): Point {
-        if (this.estLongitudinal) {
-            return this.estInverse
-                ? position.decrementerLongitude()
-                : position.incrementerLongitude();
-        } else {
-            return this.estInverse
-                ? position.decrementerLatitude()
-                : position.incrementerLatitude();
+        if (this.estLongitudinal && this.estInverse) {
+            return position.decrementerLongitude();
         }
+
+        if (this.estLongitudinal && !this.estInverse) {
+            return position.incrementerLongitude();
+        }
+
+        if (!this.estLongitudinal && this.estInverse) {
+            return position.decrementerLatitude();
+        }
+
+        if (!this.estLongitudinal && !this.estInverse) {
+            return position.incrementerLatitude();
+        }
+
+        throw new Error(
+            `Impossible d'appliquer le vecteur avec la position : (${position.x}, ${position.y})'`
+        );
     }
 
     inverser() {
-        switch (this) {
-            case Orientation.Nord:
-                return Orientation.Sud;
-            case Orientation.Est:
-                return Orientation.Ouest;
-            case Orientation.Sud:
-                return Orientation.Nord;
-            case Orientation.Ouest:
-                return Orientation.Est;
-            default:
-                throw new Error(`Orientation invalide : ${this}`);
+        let nouvelleOrientation: Orientation = this;
+
+        for (let i = 0; i < 2; i++) {
+            nouvelleOrientation = this.rotationHoraire(nouvelleOrientation);
         }
+
+        return nouvelleOrientation;
     }
 
     rotationAntiHoraire() {
-        switch (this) {
-            case Orientation.Nord:
-                return Orientation.Ouest;
-            case Orientation.Est:
-                return Orientation.Nord;
-            case Orientation.Sud:
-                return Orientation.Est;
-            case Orientation.Ouest:
-                return Orientation.Sud;
-            default:
-                throw new Error(`Orientation invalide : ${this}`);
+        let nouvelleOrientation: Orientation = this;
+
+        for (let i = 0; i < 3; i++) {
+            nouvelleOrientation = this.rotationHoraire(nouvelleOrientation);
         }
+
+        return nouvelleOrientation;
     }
 
-    rotationHoraire() {
-        switch (this) {
+    rotationHoraire(orientationCourante: Orientation) {
+        switch (orientationCourante) {
             case Orientation.Nord:
                 return Orientation.Est;
             case Orientation.Est:
@@ -67,8 +67,8 @@ export class Orientation {
                 return Orientation.Ouest;
             case Orientation.Ouest:
                 return Orientation.Nord;
-            default:
-                throw new Error(`Orientation invalide : ${this}`);
         }
+
+        throw new Error(`Orientation invalide : ${this}`);
     }
 }

@@ -86,7 +86,7 @@ export class Rover {
     public tournerDroite(): Rover {
         return new Rover(
             this.position,
-            this.orientation.rotationHoraire(),
+            this.orientation.rotationHoraire(this.orientation),
             this.planete
         );
     }
