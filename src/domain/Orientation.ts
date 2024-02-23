@@ -1,5 +1,5 @@
 import { Point } from './Point';
-import { EncapsulationBoolean } from '../../../types-primitifs/EncapsulationBoolean'; 
+import { EncapsulationBoolean } from './EncapsulationBoolean'; 
 
 // Objet valeur
 export class Orientation {

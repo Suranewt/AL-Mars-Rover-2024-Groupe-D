@@ -1,5 +1,5 @@
-import { EncapsulationBoolean } from '../../../types-primitifs/EncapsulationBoolean';
-import { EncapsulationStringArray } from '../../../types-primitifs/EncapsulationStringArray';
+import { EncapsulationBoolean } from '../domain/EncapsulationBoolean';
+import { EncapsulationStringArray } from '../domain/EncapsulationStringArray';
 import { Rover } from '../domain/Rover';
 
 // Objet valeur

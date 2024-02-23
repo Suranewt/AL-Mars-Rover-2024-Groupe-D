@@ -2,7 +2,7 @@ import { PlaneteToroidale } from './PlaneteToroidale';
 import { Orientation } from './Orientation';
 import { Point } from './Point';
 import { PlaneteInterface } from './Planete.interface';
-import { EncapsulationBoolean } from '../../../types-primitifs/EncapsulationBoolean';
+import { EncapsulationBoolean } from './EncapsulationBoolean';
 
 // Objet valeur
 export class Rover {
