@@ -1,5 +1,6 @@
 import { EncapsulationBoolean } from '../domain/EncapsulationBoolean';
 import { EncapsulationStringArray } from '../domain/EncapsulationStringArray';
+import { EncapsulationString } from '../domain/EncapsulationString';
 import { Rover } from '../domain/Rover';
 
 // Objet valeur
@@ -10,7 +11,7 @@ export class RoverInterpretor {
         this._rover = rover;
     }
 
-    public executer(commandes: string): Rover {
+    public executer(commandes: string ): Rover {
         const commandesTab: EncapsulationStringArray =
             new EncapsulationStringArray(commandes.trim().split(''));
         let aRencontreUnObstacle:  EncapsulationBoolean = new EncapsulationBoolean(false);
