@@ -8,7 +8,6 @@ export class Rover {
     readonly position: Point;
     readonly orientation: Orientation;
     readonly planete: PlaneteInterface;
-    public aucunObstacleRencontre: boolean;
 
     constructor(
         position: Point,
@@ -18,7 +17,6 @@ export class Rover {
         this.position = position;
         this.orientation = orientation;
         this.planete = planete;
-        this.aucunObstacleRencontre = true;
     }
 
     /**
@@ -63,10 +61,9 @@ export class Rover {
                 rover.orientation,
                 rover.planete
             );
-        } else {
-            rover.aucunObstacleRencontre = false;
-            return rover;
         }
+
+        return rover;
     }
 
     /**

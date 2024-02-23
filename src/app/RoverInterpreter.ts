@@ -10,10 +10,19 @@ export class RoverInterpretor {
 
     public executer(commandes: string): Rover {
         const commandesTab = commandes.trim().split('');
+        let aRencontreUnObstacle = false;
         let i = 0;
 
-        while (i < commandesTab.length && this._rover.aucunObstacleRencontre) {
+        while (i < commandesTab.length && !aRencontreUnObstacle) {
+            const ROVER_INITIAL = this._rover;
             this._rover = this._executerCommande(commandesTab[i]);
+
+            if (
+                ROVER_INITIAL.position === this._rover.position &&
+                ROVER_INITIAL.orientation === this._rover.orientation
+            )
+                aRencontreUnObstacle = true;
+
             i++;
         }
 
@@ -31,7 +40,6 @@ export class RoverInterpretor {
             case 'D':
                 return this._rover.tournerDroite();
         }
-
         throw new Error(`Commande invalide : ${commande}`);
     }
 }
