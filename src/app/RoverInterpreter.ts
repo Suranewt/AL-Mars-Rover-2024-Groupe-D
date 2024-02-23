@@ -1,3 +1,4 @@
+import { EncapsulationBoolean } from '../domain/EncapsulationBoolean';
 import { EncapsulationStringArray } from '../domain/EncapsulationStringArray';
 import { Rover } from '../domain/Rover';
 
@@ -12,20 +13,19 @@ export class RoverInterpretor {
     public executer(commandes: string): Rover {
         const commandesTab: EncapsulationStringArray =
             new EncapsulationStringArray(commandes.trim().split(''));
-        let aRencontreUnObstacle: boolean = false;
+        let aRencontreUnObstacle:  EncapsulationBoolean = new EncapsulationBoolean(false);
         let i = 0;
-
-        while (i < commandesTab.length() && !aRencontreUnObstacle) {
+        aRencontreUnObstacle
+        while (i < commandesTab.length() && !aRencontreUnObstacle.recupererValeur()) {
             const ROVER_INITIAL = this._rover;
             this._rover = this._executerCommande(
                 commandesTab.getCharAtIndex(i)
             );
-
             if (
                 ROVER_INITIAL.position === this._rover.position &&
                 ROVER_INITIAL.orientation === this._rover.orientation
-            )
-                aRencontreUnObstacle = true;
+            ) aRencontreUnObstacle = aRencontreUnObstacle.remplacerValeur(true)
+         
 
             i++;
         }
