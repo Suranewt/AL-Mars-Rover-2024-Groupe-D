@@ -9,8 +9,8 @@ export class RoverInterpretor {
     }
 
     public executer(commandes: string): Rover {
-        const commandesTab = commandes.trim().split('');
-        let aRencontreUnObstacle = false;
+        const commandesTab: string[] = commandes.trim().split('');
+        let aRencontreUnObstacle: boolean = false;
         let i = 0;
 
         while (i < commandesTab.length && !aRencontreUnObstacle) {
