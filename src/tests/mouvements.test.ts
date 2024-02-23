@@ -187,5 +187,19 @@ describe(`Un rover peut reculer`, () => {
                 expect(roverInit.orientation).toBe(Orientation.Ouest);
             }
         );
+        test(
+            `ETANT DONNE un Rover orienté vers le NORD, ` +
+                `QUAND il tourne à 2 fois à gauche, ` +
+                `ALORS il doit avoir la même orientation qu'un Rover orienté initialement vers le Nord et qui tourne 2 fois à droite`,
+            () => {
+                let roverInit = RoverBuilder.default();
+                let roverFinal = RoverBuilder.default();
+
+                roverInit = roverInit.tournerGauche().tournerGauche();
+                roverFinal = roverFinal.tournerDroite().tournerDroite();
+
+                expect(roverInit.orientation).toBe(roverFinal.orientation);
+            }
+        );
     });
 });
