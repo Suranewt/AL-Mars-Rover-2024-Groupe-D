@@ -2,7 +2,6 @@ import { PlaneteToroidale } from './PlaneteToroidale';
 import { Orientation } from './Orientation';
 import { Point } from './Point';
 import { PlaneteInterface } from './Planete.interface';
-import { EncapsulationBoolean } from './EncapsulationBoolean';
 
 // Objet valeur
 export class Rover {
@@ -26,8 +25,8 @@ export class Rover {
     public avancer(): Rover {
         let nouvellePosition = this.orientation.appliquerVecteur(this.position);
 
-        const DEPLACEMENT_LIBRE: EncapsulationBoolean =
-            new EncapsulationBoolean(this.planete.estLibre(nouvellePosition));
+        const DEPLACEMENT_LIBRE: boolean =
+            this.planete.estLibre(nouvellePosition);
 
         return this._deplacerRover(this, DEPLACEMENT_LIBRE, nouvellePosition);
     }
@@ -37,8 +36,8 @@ export class Rover {
             .inverser()
             .appliquerVecteur(this.position);
 
-        const DEPLACEMENT_LIBRE: EncapsulationBoolean =
-            new EncapsulationBoolean(this.planete.estLibre(nouvellePosition));
+        const DEPLACEMENT_LIBRE: boolean =
+            this.planete.estLibre(nouvellePosition);
 
         return this._deplacerRover(this, DEPLACEMENT_LIBRE, nouvellePosition);
     }
@@ -46,16 +45,16 @@ export class Rover {
     /**
      * Gère le comportement du Rover par rapport à son déplacement
      * @param rover Le rover à déplacer
-     * @param estLibreDeDeplacement Le EncapsulationBoolean permettant de savoir si le Rover n'a pas rencontré d'obstacle
+     * @param estLibreDeDeplacement Le booléan permettant de savoir si le Rover n'a pas rencontré d'obstacle
      * @param nouvellePosition La nouvelle position qu'aura le Rover
      * @returns Le Rover déplacé (ou non si obstacle)
      */
     private _deplacerRover(
         rover: Rover,
-        estLibreDeDeplacement: EncapsulationBoolean,
+        estLibreDeDeplacement: boolean,
         nouvellePosition: Point
     ): Rover {
-        if (estLibreDeDeplacement.recupererValeur()) {
+        if (estLibreDeDeplacement) {
             nouvellePosition = rover.planete.normaliser(nouvellePosition);
             return new Rover(
                 nouvellePosition,

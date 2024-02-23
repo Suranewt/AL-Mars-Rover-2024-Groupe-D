@@ -1,35 +1,34 @@
 import { Point } from './Point';
-import { EncapsulationBoolean } from './EncapsulationBoolean'; 
 
 // Objet valeur
 export class Orientation {
-    public static readonly Nord: Orientation = new Orientation(new EncapsulationBoolean(false), new EncapsulationBoolean(true));
-    public static readonly Est: Orientation = new Orientation(new EncapsulationBoolean(false), new EncapsulationBoolean(false));
-    public static readonly Sud: Orientation = new Orientation(new EncapsulationBoolean(true), new EncapsulationBoolean(true));
-    public static readonly Ouest: Orientation = new Orientation(new EncapsulationBoolean(true), new EncapsulationBoolean(false));
+    public static readonly Nord: Orientation = new Orientation(false, true);
+    public static readonly Est: Orientation = new Orientation(false, false);
+    public static readonly Sud: Orientation = new Orientation(true, true);
+    public static readonly Ouest: Orientation = new Orientation(true, false);
 
-    private readonly estInverse: EncapsulationBoolean;
-    private readonly estLongitudinal: EncapsulationBoolean;
+    private readonly estInverse: boolean;
+    private readonly estLongitudinal: boolean;
 
-    private constructor(estInverse: EncapsulationBoolean, estLongitudinal: EncapsulationBoolean) {
+    private constructor(estInverse: boolean, estLongitudinal: boolean) {
         this.estInverse = estInverse;
         this.estLongitudinal = estLongitudinal;
     }
 
     appliquerVecteur(position: Point): Point {
-        if (this.estLongitudinal.recupererValeur() && this.estInverse.recupererValeur()) {
+        if (this.estLongitudinal && this.estInverse) {
             return position.decrementerLongitude();
         }
 
-        if (this.estLongitudinal.recupererValeur() && !this.estInverse.recupererValeur()) {
+        if (this.estLongitudinal && !this.estInverse) {
             return position.incrementerLongitude();
         }
 
-        if (!this.estLongitudinal.recupererValeur() && this.estInverse.recupererValeur()) {
+        if (!this.estLongitudinal && this.estInverse) {
             return position.decrementerLatitude();
         }
 
-        if (!this.estLongitudinal.recupererValeur() && !this.estInverse.recupererValeur()) {
+        if (!this.estLongitudinal && !this.estInverse) {
             return position.incrementerLatitude();
         }
 
