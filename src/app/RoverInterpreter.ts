@@ -11,9 +11,17 @@ export class RoverInterpretor {
     public executer(commandes: string): Rover {
         const commandesTab = commandes.trim().split('');
         let i = 0;
+        let aRencontreUnObstacle: boolean = false;
 
-        while (i < commandesTab.length && this._rover.aucunObstacleRencontre) {
+        while (i < commandesTab.length && !aRencontreUnObstacle) {
+            const ROVER_INITIAL = this._rover;
             this._rover = this._executerCommande(commandesTab[i]);
+
+            if (
+                ROVER_INITIAL.position === this._rover.position &&
+                ROVER_INITIAL.orientation === this._rover.orientation
+            )
+                aRencontreUnObstacle = true;
             i++;
         }
 
