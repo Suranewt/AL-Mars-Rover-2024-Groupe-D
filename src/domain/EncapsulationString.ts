@@ -8,5 +8,9 @@ export class EncapsulationString {
     public recupererString(): string {
         return this._string;
     }
-    
+
+    public trim(): string {
+        return this._string.trim();
+    }
+
 }
