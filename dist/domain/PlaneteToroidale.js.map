@@ -1,0 +1,1 @@
+{"version":3,"file":"PlaneteToroidale.js","sourceRoot":"","sources":["../../src/domain/PlaneteToroidale.ts"],"names":[],"mappings":";;;AAGA,MAAa,gBAAgB;IAGzB,YAAY,MAAc;QACtB,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;IAGD,UAAU,CAAC,KAAY;QACnB,OAAO,KAAK,CAAC,MAAM,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC;IACrC,CAAC;IAED,QAAQ,CAAC,QAAe;QACpB,OAAO,IAAI,CAAC;IAChB,CAAC;CACJ;AAfD,4CAeC"}

@@ -1,11 +1,27 @@
 {
+    "name": "socket-typescript-api",
+    "version": "1.0.0",
+    "main": "dist/server.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "watch-ts": "tsc -w",
+        "watch-node": "nodemon dist/server.js",
+        "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
+        "test": "mocha -r ts-node/register src/**/*.spec.ts"
+    },
     "devDependencies": {
         "@types/jest": "^29.5.12",
         "jest": "^29.7.0",
         "ts-jest": "^29.1.2",
         "typescript": "^5.3.3"
     },
-    "scripts": {
-        "test": "jest"
+    "dependencies": {
+        "@types/express": "^4.17.21",
+        "@types/socket.io": "^3.0.2",
+        "concurrently": "^8.2.2",
+        "express": "^4.19.1",
+        "nodemon": "^3.1.0",
+        "socket.io": "^4.7.5"
     }
 }
