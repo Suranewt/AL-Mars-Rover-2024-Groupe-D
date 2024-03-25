@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rover Command Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rover Command Interface</h1>
+    <div class="container">
+        <button id="forward">Forward</button><br>
+        <button id="left">Left</button>
+        <button id="stop">Stop</button>
+        <button id="right">Right</button><br>
+        <button id="backward">Backward</button>
+    </div>
+    <div id="status"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const socket = io();
+
+            const forwardBtn = document.getElementById('forward');
+            const backwardBtn = document.getElementById('backward');
+            const leftBtn = document.getElementById('left');
+            const rightBtn = document.getElementById('right');
+            const stopBtn = document.getElementById('stop');
+            const statusDiv = document.getElementById('status');
+
+            forwardBtn.addEventListener('click', () => {
+                socket.emit('move', 'forward');
+            });
+
+            backwardBtn.addEventListener('click', () => {
+                socket.emit('move', 'backward');
+            });
+
+            leftBtn.addEventListener('click', () => {
+                socket.emit('move', 'left');
+            });
+
+            rightBtn.addEventListener('click', () => {
+                socket.emit('move', 'right');
+            });
+
+            stopBtn.addEventListener('click', () => {
+                socket.emit('move', 'stop');
+            });
+
+            socket.on('status', (message) => {
+                statusDiv.textContent = message;
+            });
+        });
+    </script>
+</body>
+</html>
