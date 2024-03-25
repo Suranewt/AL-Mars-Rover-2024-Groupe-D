@@ -10,11 +10,11 @@
         .container {
             margin-top: 50px;
         }
-        button {
+        input[type="text"] {
             font-size: 18px;
             padding: 10px 20px;
             margin: 5px;
-            cursor: pointer;
+            width: 150px;
         }
         #status {
             margin-top: 20px;
@@ -25,11 +25,7 @@
 <body>
     <h1>Rover Command Interface</h1>
     <div class="container">
-        <button id="forward">Forward</button><br>
-        <button id="left">Left</button>
-        <button id="stop">Stop</button>
-        <button id="right">Right</button><br>
-        <button id="backward">Backward</button>
+        <input type="text" id="commandInput" placeholder="Enter command (forward, backward, left, right, stop)">
     </div>
     <div id="status"></div>
 
@@ -37,36 +33,22 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const socket = io();
-
-            const forwardBtn = document.getElementById('forward');
-            const backwardBtn = document.getElementById('backward');
-            const leftBtn = document.getElementById('left');
-            const rightBtn = document.getElementById('right');
-            const stopBtn = document.getElementById('stop');
+            const commandInput = document.getElementById('commandInput');
             const statusDiv = document.getElementById('status');
 
-            forwardBtn.addEventListener('click', () => {
-                socket.emit('move', 'forward');
-            });
-
-            backwardBtn.addEventListener('click', () => {
-                socket.emit('move', 'backward');
-            });
-
-            leftBtn.addEventListener('click', () => {
-                socket.emit('move', 'left');
-            });
-
-            rightBtn.addEventListener('click', () => {
-                socket.emit('move', 'right');
-            });
-
-            stopBtn.addEventListener('click', () => {
-                socket.emit('move', 'stop');
+            commandInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    const command = commandInput.value.trim().toLowerCase();
+                    socket.emit('move', command);
+                    console.log(`Rover command: ${command}`);
+                    commandInput.value = ''; // Clear input field
+                    event.preventDefault();
+                }
             });
 
             socket.on('status', (message) => {
                 statusDiv.textContent = message;
+                console.log(`Rover status: ${message}`);
             });
         });
     </script>
