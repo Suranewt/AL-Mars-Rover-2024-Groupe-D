@@ -8,12 +8,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-// Serve static files from the `public` directory
-app.use(express.static('public'));
-
 // Root route to serve your HTML file
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/AL-Mars-Rover-2024-Groupe-D/public/index.html'); // Adjust the path as necessary
+  res.sendFile("index.html", { root :"src/mission-Control"}); // Adjust the path as necessary
 });
 
 const server = http.createServer(app);

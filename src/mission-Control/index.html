@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Rover Command Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input[type="text"] {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            width: 150px;
+        }
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rover Command Interface</h1>
+    <div class="container">
+        <input type="text" id="commandInput" placeholder="Enter command (forward, backward, left, right, stop)">
+    </div>
+    <div id="status"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const socket = io();
+            const commandInput = document.getElementById('commandInput');
+            const statusDiv = document.getElementById('status');
+
+            commandInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    const command = commandInput.value.trim().toLowerCase();
+                    socket.emit('move', command);
+                    console.log(`Rover command: ${command}`);
+                    commandInput.value = ''; // Clear input field
+                    event.preventDefault();
+                }
+            });
+
+            socket.on('status', (message) => {
+                statusDiv.textContent = message;
+                console.log(`Rover status: ${message}`);
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rover Command Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input[type="text"] {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            width: 150px;
+        }
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rover Command Interface</h1>
+    <div class="container">
+        <input type="text" id="commandInput" placeholder="Enter command (forward, backward, left, right, stop)">
+    </div>
+    <div id="status"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const socket = io();
+            const commandInput = document.getElementById('commandInput');
+            const statusDiv = document.getElementById('status');
+            const interpretor = new RoverInterpretor(); // Create an instance of RoverInterpretor
+
+            commandInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    const command = commandInput.value.trim().toUpperCase(); // Convert command to uppercase
+                    socket.emit('move', command);
+                    console.log(`Rover command: ${command}`);
+                    const roverStatus = interpretor.executer(command); // Execute command with interpretor
+                    statusDiv.textContent = `Rover status: ${roverStatus}`; // Update UI with rover status
+                    commandInput.value = ''; // Clear input field
+                    event.preventDefault();
+                }
+            });
+            socket.on('status', (message) => {
+                console.log(`Rover status: ${message}`);
+            });
+        });
+    </script>
+</body>
+</html>
