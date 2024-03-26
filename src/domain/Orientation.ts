@@ -71,4 +71,19 @@ export class Orientation {
                 throw new Error(`Orientation invalide : ${this}`);
         }
     }
+
+    toString() {
+        switch (this) {
+            case Orientation.Nord:
+                return 'Nord';
+            case Orientation.Est:
+                return 'Est';
+            case Orientation.Sud:
+                return 'Sud';
+            case Orientation.Ouest:
+                return 'Ouest';
+            default:
+                throw new Error(`Orientation invalide : ${this}`);
+        }
+    }
 }
