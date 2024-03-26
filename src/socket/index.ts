@@ -8,7 +8,6 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-// Root route to serve your HTML file
 app.get('/', function(req, res) {
   res.sendFile("index.html", { root :"src/mission-Control"}); // Adjust the path as necessary
 });
