@@ -1,7 +1,7 @@
 node_modules/
 .node_modules/
-dist/
 build/
+dist/
 src/exos
 built/*
 tests/cases/rwc/*
