@@ -2,12 +2,14 @@ import { PlaneteToroidale } from './PlaneteToroidale';
 import { Orientation } from './Orientation';
 import { Point } from './Point';
 import { PlaneteInterface } from './Planete.interface';
+import { RoverInterface } from './Rover.interface';
 
 // Objet valeur
-export class Rover {
+export class Rover implements RoverInterface {
     readonly position: Point;
     readonly orientation: Orientation;
     readonly planete: PlaneteInterface;
+    public aucunObstacleRencontre: boolean;
 
     constructor(
         position: Point,
@@ -17,6 +19,7 @@ export class Rover {
         this.position = position;
         this.orientation = orientation;
         this.planete = planete;
+        this.aucunObstacleRencontre = true;
     }
 
     /**
@@ -61,9 +64,10 @@ export class Rover {
                 rover.orientation,
                 rover.planete
             );
+        } else {
+            rover.aucunObstacleRencontre = false;
+            return rover;
         }
-
-        return rover;
     }
 
     /**
