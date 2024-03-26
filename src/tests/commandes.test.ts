@@ -1,14 +1,14 @@
 import { Orientation } from '../domain/Orientation';
 import { Point } from '../domain/Point';
 import { Rover } from '../domain/Rover';
-import { RoverInterpretor } from '../app/RoverInterpreter';
+import { RoverInterpreter } from '../app/RoverInterpreter';
 import { RoverBuilder } from './utilities/RoverBuilder';
 
 describe(`Un Rover exécute des commandes simples`, () => {
     test(`La commande 'A' fait avancer le Rover`, () => {
         let roverTemoin: Rover = RoverBuilder.default();
         let roverTeste: Rover = RoverBuilder.default();
-        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+        const roverExecutor: RoverInterpreter = new RoverInterpreter(
             roverTeste
         );
 
@@ -21,7 +21,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
     test(`La commande 'R' fait reculer le Rover`, () => {
         let roverTemoin: Rover = RoverBuilder.default();
         let roverTeste: Rover = RoverBuilder.default();
-        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+        const roverExecutor: RoverInterpreter = new RoverInterpreter(
             roverTeste
         );
 
@@ -34,7 +34,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
     test(`La commande 'D' fait tourner l'orientation du Rover de 90° vers la droite`, () => {
         let roverTemoin: Rover = RoverBuilder.default();
         let roverTeste: Rover = RoverBuilder.default();
-        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+        const roverExecutor: RoverInterpreter = new RoverInterpreter(
             roverTeste
         );
 
@@ -47,7 +47,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
     test(`La commande 'G' fait tourner l'orientation du Rover de 90° vers la gauche`, () => {
         let roverTemoin: Rover = RoverBuilder.default();
         let roverTeste: Rover = RoverBuilder.default();
-        const roverExecutor: RoverInterpretor = new RoverInterpretor(
+        const roverExecutor: RoverInterpreter = new RoverInterpreter(
             roverTeste
         );
 
@@ -71,7 +71,7 @@ describe(`Un Rover exécute des commandes simples`, () => {
                 let roverTeste: Rover = new RoverBuilder()
                     .withOrientation(Orientation.Est)
                     .build();
-                const roverExecutor: RoverInterpretor = new RoverInterpretor(
+                const roverExecutor: RoverInterpreter = new RoverInterpreter(
                     roverTeste
                 );
 
