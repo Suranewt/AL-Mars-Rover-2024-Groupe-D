@@ -1,4 +1,4 @@
-import { RoverInterpreter } from './../app/RoverInterpreter';
+import { RoverInterpreter } from '../domain/RoverInterpreter';
 import { PlaneteToroidale } from './../domain/PlaneteToroidale';
 import { Rover } from '../domain/Rover';
 import { Orientation } from '../domain/Orientation';

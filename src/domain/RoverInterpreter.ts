@@ -1,7 +1,7 @@
-import { Orientation } from '../domain/Orientation';
-import { PlaneteInterface } from '../domain/Planete.interface';
-import { Point } from '../domain/Point';
-import { Rover } from '../domain/Rover';
+import { Orientation } from './Orientation';
+import { PlaneteInterface } from './Planete.interface';
+import { Point } from './Point';
+import { Rover } from './Rover';
 
 // Objet valeur
 export class RoverInterpreter {
@@ -42,7 +42,8 @@ export class RoverInterpreter {
             case 'D':
                 return this._rover.tournerDroite();
             default:
-                throw new Error(`Commande invalide : ${commande}`);
+                // throw new Error(`Commande invalide : ${commande}`);
+                return this._rover;
         }
     }
 

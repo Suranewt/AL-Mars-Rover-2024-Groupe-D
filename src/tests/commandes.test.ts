@@ -1,7 +1,7 @@
 import { Orientation } from '../domain/Orientation';
 import { Point } from '../domain/Point';
 import { Rover } from '../domain/Rover';
-import { RoverInterpreter } from '../app/RoverInterpreter';
+import { RoverInterpreter } from '../domain/RoverInterpreter';
 import { RoverBuilder } from './utilities/RoverBuilder';
 
 describe(`Un Rover exécute des commandes simples`, () => {

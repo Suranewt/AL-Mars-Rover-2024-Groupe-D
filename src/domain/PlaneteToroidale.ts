@@ -8,7 +8,6 @@ export class PlaneteToroidale implements PlaneteInterface {
         this.taille = taille;
     }
 
-
     normaliser(point: Point): Point {
         return point.modulo(this.taille);
     }
