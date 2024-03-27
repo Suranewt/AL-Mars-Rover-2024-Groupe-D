@@ -38,9 +38,8 @@ Vous pilotez à distance un Rover se situant sur Mars, une planète toroïdale c
 
 À chaque commande envoyé, le Rover vous renvoie sa position sous la forme suivante :
 
-```
-Position du rover : [x, y, orientation]
-```
+`   Position du rover : [x, y, orientation]
+  `
 
 Où :
 
