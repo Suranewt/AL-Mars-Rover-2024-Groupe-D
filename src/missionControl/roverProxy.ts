@@ -16,13 +16,13 @@ export class RoverProxy implements RoverInterface {
         this._commandChannel = commandChannel;
     }
 
-    Avancer(): RoverInterface {
+    avancer(): RoverInterface {
         let request = "A";
         let response = this._commandChannel.Transceive(request);
         return RoverInterpreter.deserialize(response, this.planèteCommune);
     }
 
-    Reculer(): RoverInterface {
+    reculer(): RoverInterface {
         let request = "R";
         let response = this._commandChannel.Transceive(request);
         return RoverInterpreter.deserialize(response, this.planèteCommune);
