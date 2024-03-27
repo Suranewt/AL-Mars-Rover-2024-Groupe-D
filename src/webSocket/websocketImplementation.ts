@@ -1,7 +1,6 @@
-import {PassiveNetworkInterface} from "../passiveRover/roverListener";
 import {ActiveNetworkInterface} from "../missionControl/roverProxy";
 
-export class WebsocketImplementation implements PassiveNetworkInterface, ActiveNetworkInterface {
+export class WebsocketImplementation implements ActiveNetworkInterface {
     Transceive(str: string): string {
         throw new Error("Method not implemented.");
     }

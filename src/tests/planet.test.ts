@@ -1,4 +1,4 @@
-import { RoverInterpretor } from './../app/RoverInterpreter';
+import { RoverInterpreter } from './../app/RoverInterpreter';
 import { PlaneteToroidale } from './../domain/PlaneteToroidale';
 import { Rover } from '../domain/Rover';
 import { Orientation } from '../domain/Orientation';
@@ -87,7 +87,7 @@ describe('Un Rover sur une planète avec un obstacle', () => {
                 .withStartingPosition(new Point(0, 1))
                 .build();
 
-            const roverInterpretor: RoverInterpretor = new RoverInterpretor(
+            const roverInterpretor: RoverInterpreter = new RoverInterpreter(
                 roverTeste
             );
 
@@ -109,14 +109,15 @@ describe('Un Rover sur une planète avec un obstacle', () => {
                 new PlaneteAvecObstacle(PLANETE_TOROIDALE, OBSTACLE);
 
             let roverTeste: Rover = new RoverBuilder()
-                .withPlanete(planeteAvecObstacle).withOrientation(Orientation.Sud)
+                .withPlanete(planeteAvecObstacle)
+                .withOrientation(Orientation.Sud)
                 .build();
             let roverTemoin: Rover = new RoverBuilder()
                 .withPlanete(planeteAvecObstacle)
                 .withStartingPosition(new Point(0, 1))
                 .build();
 
-            const roverInterpretor: RoverInterpretor = new RoverInterpretor(
+            const roverInterpretor: RoverInterpreter = new RoverInterpreter(
                 roverTeste
             );
 
