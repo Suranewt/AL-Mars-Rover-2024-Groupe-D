@@ -11,20 +11,18 @@ const server = app.listen(port, () => {
 
 const io = new SocketIOServer(server);
 
-app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "src/client" });
-});
 
 io.on("connection", (socket: Socket) => {
   console.log("A user connected");
-  
-  socket.on("message", (message: string) => {
-    console.log(message);
 
-    socket.emit("message", message);
+  const s = socket;
+  
+  s.on("command", (command: string) => {
+    console.log(`Received command: ${command}`);
   });
 
-  socket.on("disconnect", () => {
+  s.on("disconnect", () => {
     console.log("A user disconnected");
   });
+
 });
