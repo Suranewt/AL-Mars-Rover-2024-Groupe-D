@@ -5,6 +5,7 @@ Vous pilotez à distance un Rover se situant sur Mars, une planète toroïdale c
 ## Règles
 
 -   Votre Rover se déplace case par case.
+-   À chaque déplacement, le Rover renvoie sa position.
 -   Vous pouvez enchaîner les commandes à la suite.
 -   Vous ne pouvez pas passer à travers un obstacle.
 -   Si vous entrez une commande invalide, le Rover ne se déplace pas.
