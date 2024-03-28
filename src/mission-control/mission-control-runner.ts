@@ -8,7 +8,7 @@ import {
     EVENT_INVALID_COMMAND,
     EVENT_LOGGED,
     EVENT_ROVER_POSITION
-} from '../socket-event-names/event-names';
+} from '../network/web-socket/event-names';
 import { RoverInterpreter } from '../domain/RoverInterpreter';
 
 const rl = ReadLine.createInterface({
@@ -64,5 +64,5 @@ socket.on(EVENT_ROVER_POSITION, (roverPosition) => {
 });
 
 socket.on(EVENT_INVALID_COMMAND, (error) => {
-    console.log(error);
+    console.error(error);
 });
