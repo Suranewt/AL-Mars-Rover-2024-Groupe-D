@@ -35,6 +35,13 @@ Vous pilotez à distance un Rover se situant sur Mars, une planète toroïdale c
     node build/mission-control/mission-control-runner.js
     ```
 
+## Commandes interprétable par le Rover
+
+-   `A` fait avancer le Rover
+-   `R` fait reculer le Rover
+-   `D` fait tourner le Rover de 90° dans le sens horaire
+-   `G` fait tourner le Rover de 90° dans le sens anti-horaire
+
 ## Vocabulaire
 
 À chaque commande envoyé, le Rover vous renvoie sa position sous la forme suivante :

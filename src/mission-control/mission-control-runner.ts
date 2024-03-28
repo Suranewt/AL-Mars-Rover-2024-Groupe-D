@@ -3,13 +3,13 @@ import { io } from 'socket.io-client';
 import ReadLine from 'readline';
 import { port } from '../conf/port';
 import { IO_CLIENT_DISCONNECT } from './socket-reason';
-import { HELP, QUIT } from './commands';
 import {
     EVENT_COMMANDS,
     EVENT_INVALID_COMMAND,
     EVENT_LOGGED,
     EVENT_ROVER_POSITION
 } from '../socket-event-names/event-names';
+import { RoverInterpreter } from '../domain/RoverInterpreter';
 
 const rl = ReadLine.createInterface({
     input: process.stdin,
@@ -20,35 +20,33 @@ const socket = io(`http://localhost:${port}`);
 
 const envoyerCommandes = () => {
     rl.question('', (input) => {
-        const inputUpperCased: string = input.trim().toUpperCase();
+        const inputUpperCased = input.trim().toUpperCase();
 
-        if (!QUIT.includes(inputUpperCased)) {
-            if (HELP.includes(inputUpperCased)) {
-                afficherAide();
-            } else {
-                socket.emit(EVENT_COMMANDS, inputUpperCased);
-            }
-            envoyerCommandes();
-        } else socket.disconnect();
+        if (areCommandesValides(inputUpperCased)) {
+            socket.emit(EVENT_COMMANDS, inputUpperCased);
+        } else console.error('Commande invalide');
+
+        envoyerCommandes();
     });
 };
 
-const afficherAide = (): void => {
-    console.log(`\nCommandes :`);
-    console.log(`A\tFait avancer le rover`);
-    console.log(`R\tFait reculer le rover`);
-    console.log(`D\tFait tourner le Rover de 90° dans le sens horaire`);
-    console.log(`G\tFait tourner le Rover de 90° dans le sens anti-horaire`);
-    console.log(`H\tAffiche la liste des commandes`);
-    console.log(`Q\tDéconnecte ce terminal du serveur\n`);
+const areCommandesValides = (input: string): boolean => {
+    const inputCommandes = input.split('');
+    const listeCommandesValides: string[] =
+        RoverInterpreter.recupererListeCommandesValides();
+
+    let isCommandeValide = true;
+    let i = 0;
+    while (i < inputCommandes.length && isCommandeValide) {
+        isCommandeValide = listeCommandesValides.includes(inputCommandes[i]);
+        i++;
+    }
+
+    return isCommandeValide;
 };
 
 socket.on('connect', () => {
     console.log(`Connexion au roveur sur le port ${port} réussie.`);
-    console.log(
-        `Entrez la commande 'h' ou 'help' pour voir la liste des commandes.`
-    );
-
     socket.emit(EVENT_LOGGED, socket.id);
     envoyerCommandes();
 });
