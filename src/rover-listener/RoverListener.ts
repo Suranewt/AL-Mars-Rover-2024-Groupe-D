@@ -8,10 +8,10 @@ export class RoverListener {
     constructor(rover: Rover, nface: NetworkInterface) {
         this.rover = rover;
 
-        nface.registerCallBack(this.getPositionApresDeplacement);
+        nface.registerCallBack(this.deplacerEtRecupererPosition);
     }
 
-    private getPositionApresDeplacement(commandes: string): string {
+    private deplacerEtRecupererPosition(commandes: string): string {
         const roverInterpreter: RoverInterpreter = new RoverInterpreter(
             this.rover
         );
